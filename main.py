@@ -3,7 +3,7 @@ from ev3dev2.motor import *
 from ev3dev2.sensor import *
 from ev3dev2.sensor.lego import GyroSensor
 from time import sleep
-from math import pi, sqrt, sin, cos
+from math import pi
 
 leftPort=OUTPUT_A
 rightPort=OUTPUT_B
