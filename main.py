@@ -53,23 +53,23 @@ def MoveDistance(n):
 
 def MoveInches(n): MoveDistance(2.54*n)
 
-def TurnAngle(d):
+def TurnAngle(r):
     global pos
     global gyro
     global tankV
-    
+
     #calculate the angle to turn in degrees
-    angle = d * pi / 180
+    angle = r * pi / 180
     
     #reset the gyro sensor
     gyro.reset()
     
     #set the motor speeds to turn in place
-    if (d > 0): tankV.on(SpeedPercent(50), SpeedPercent(-50))
+    if (r > 0): tankV.on(SpeedPercent(50), SpeedPercent(-50))
     else: tankV.on(SpeedPercent(-50), SpeedPercent(50))
     
     #keep turning until the desired angle is reached
-    while abs(gyro.angle) < abs(d): pass
+    while abs(gyro.angle) < abs(r): pass
     
     #stop the motors and update the heading
     tankV.off()
