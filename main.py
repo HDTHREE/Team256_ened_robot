@@ -19,7 +19,7 @@ gyro.calibrate()
 pos=0,0,0 #x,y,angle
 gyro.reset()
 
-diameter=1 #this value represents the diameter of the wheels
+diameter=1 #this value represents the diameter of the wheels in cm
 circ=pi*diameter
 
 def MoveDistance(n):
@@ -74,3 +74,9 @@ def TurnAngle(d):
     heading = gyro.angle
     pos = pos[0], pos[1], heading
 
+if __name__ == "__main__":
+    for i in range(3): 
+        MoveDistance(15)#i think this is in cm
+        TurnAngle(pi)
+        MoveDistance(15)#i think this is in cm
+        TurnAngle(pi)
