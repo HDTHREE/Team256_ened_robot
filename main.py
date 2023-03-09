@@ -16,7 +16,7 @@ tankV = MoveTank(leftPort,rightPort)
 
 gyro = GyroSensor(gyroPort)
 gyro.calibrate()
-pos=0,0,0 #x,y,angle
+pos=0,0,0 #x,y,theta
 gyro.reset()
 
 diameter=1 #this value represents the diameter of the wheels in cm
@@ -51,6 +51,8 @@ def MoveDistance(n):
     #reset the gyro sensor for the next movement
     gyro.reset()
 
+def MoveInches(n): MoveDistance(2.54*n)
+
 def TurnAngle(d):
     global pos
     global gyro
@@ -74,9 +76,31 @@ def TurnAngle(d):
     heading = gyro.angle
     pos = pos[0], pos[1], heading
 
+class Testing:
+    def LocomotionTest1():
+        MoveInches(12)
+    def LocomotionTest2():
+        MoveInches(36)
+    def LocomotionTest3():
+        MoveInches(60)
+    def LocomotionTest4():
+        MoveInches(84) 
+    def LocomotionTest5():
+        MoveInches(12)
+        TurnAngle(pi)
+        MoveInches(12)
+    def LocomotionTest6():
+        MoveInches(12)
+        TurnAngle(pi)
+        MoveInches(24)      
+    def LocomotionTest7():
+        MoveInches(12)
+        TurnAngle(pi)
+        MoveInches(48)
+    def LocomotionTest8():
+        MoveInches(12)
+        TurnAngle(pi)
+        MoveInches(96)
+
 if __name__ == "__main__":
-    for i in range(3): 
-        MoveDistance(15)#i think this is in cm
-        TurnAngle(pi)
-        MoveDistance(15)#i think this is in cm
-        TurnAngle(pi)
+    Testing.LocomotionTest1
