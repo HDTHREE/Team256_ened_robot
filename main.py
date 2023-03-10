@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from ev3dev2.motor import *
 from ev3dev2.sensor import *
 from ev3dev2.sensor.lego import GyroSensor
@@ -19,7 +19,7 @@ gyro.calibrate()
 pos=0,0,0 #x,y,theta
 gyro.reset()
 
-diameter=1 #this value represents the diameter of the wheels in cm
+diameter=2.7*2.54 #this value represents the diameter of the wheels in cm
 circ=pi*diameter
 
 def MoveDistance(n):
@@ -57,16 +57,16 @@ def TurnAngle(r):
     global pos
     global gyro
     global tankV
-
-    #calculate the angle to turn in degrees
-    angle = r * pi / 180
     
+    #r is taken as degrees
+    #r=90 turns the robot left
+
     #reset the gyro sensor
     gyro.reset()
     
     #set the motor speeds to turn in place
-    if (r > 0): tankV.on(SpeedPercent(50), SpeedPercent(-50))
-    else: tankV.on(SpeedPercent(-50), SpeedPercent(50))
+    if (r > 0): tankV.on(SpeedPercent(10), SpeedPercent(-10))
+    else: tankV.on(SpeedPercent(-10), SpeedPercent(10))
     
     #keep turning until the desired angle is reached
     while abs(gyro.angle) < abs(r): pass
@@ -87,20 +87,20 @@ class Testing:
         MoveInches(84) 
     def LocomotionTest5():
         MoveInches(12)
-        TurnAngle(pi)
+        TurnAngle(90)
         MoveInches(12)
     def LocomotionTest6():
         MoveInches(12)
-        TurnAngle(pi)
+        TurnAngle(90)
         MoveInches(24)      
     def LocomotionTest7():
         MoveInches(12)
-        TurnAngle(pi)
+        TurnAngle(90)
         MoveInches(48)
     def LocomotionTest8():
         MoveInches(12)
-        TurnAngle(pi)
+        TurnAngle(90)
         MoveInches(96)
 
 if __name__ == "__main__":
-    Testing.LocomotionTest1
+    Testing.LocomotionTest8()
