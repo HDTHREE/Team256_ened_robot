@@ -61,16 +61,17 @@ def MoveDistance(m):
     #reset the gyro sensor for the next movement
     gyro.reset()
 
-def TurnAngle(d):
+def TurnAngle(dn):
     global m1
     global m2
     global pos
     global gyro
     global tankV
 
+    d=-dn
     gyro.reset
 
-    tankV.turn_degrees(SpeedPercent(10), d, brake=True, error_margin=1, sleep_time=0.01)
+    tankV.turn_degrees(SpeedPercent(-10), d, brake=True, error_margin=1, sleep_time=0.01)
 
     pos[2] = (pos[2] + d)%360
 
