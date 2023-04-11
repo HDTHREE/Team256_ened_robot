@@ -19,22 +19,23 @@ gyro.calibrate()
 pos=0,0,0 #x,y,theta
 gyro.reset()
 
-def MoveDistance(n):
+diameter=2.2*2.54 #this value represents the diameter of the wheels in cm
+circ = pi*diameter
+def MoveDistance(n): 
     global pos
     global gyro
     global tankV
     global distConst
-    global circ
     
     #calculate the distance each wheel needs to travel
-    wheelDist = n*circ
+    wheelTheta = (n/(diameter/2))*(180/pi)
     
     #reset motor positions
     m1.position = 0
     m2.position = 0
     
     #set motor speeds
-    tankV.on_for_degrees(SpeedPercent(50),SpeedPercent(50), wheelDist, brake=True, block=True)
+    tankV.on_for_degrees(SpeedPercent(-20),SpeedPercent(-20), wheelTheta, brake=True, block=True)
     
     #calculate the distance traveled using the average of the two wheel positions
     posChange = ((m1.position + m2.position) / 2) * circ / 360
@@ -49,4 +50,4 @@ def MoveDistance(n):
     gyro.reset()
 
 if __name__ == "__main__":
-    MoveDistance(10)
+    MoveDistance(2.4)
