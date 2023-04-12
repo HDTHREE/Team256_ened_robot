@@ -66,14 +66,14 @@ def TurnAngle(d):
 def ReadBarcode():
     global reader
 
-    color=[]
-    color[0]=reader.color
+    color=[0,0,0,0]
+    color[0]=reader.color()
     MoveDistance(0.5)
-    color[1]=reader.color
+    color[1]=reader.color()
     MoveDistance(0.5)
-    color[2]=reader.color
+    color[2]=reader.color()
     MoveDistance(0.5)
-    color[3]=reader.color
+    color[3]=reader.color()
     MoveDistance(0.5)
 
     for i in range(len(color)):    
