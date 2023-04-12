@@ -67,14 +67,14 @@ def ReadBarcode():
     global reader
 
     color=[0,0,0,0]
-    color[0]=reader.color()
-    MoveDistance(0.5)
-    color[1]=reader.color()
-    MoveDistance(0.5)
-    color[2]=reader.color()
-    MoveDistance(0.5)
-    color[3]=reader.color()
-    MoveDistance(0.5)
+    color[0]=reader.color
+    tankV.on_for_degrees(SpeedPercent(20),SpeedPercent(20), 0.45, brake=True, block=True)
+    color[1]=reader.color
+    tankV.on_for_degrees(SpeedPercent(20),SpeedPercent(20), 0.45, brake=True, block=True)
+    color[2]=reader.color
+    tankV.on_for_degrees(SpeedPercent(20),SpeedPercent(20), 0.45, brake=True, block=True)
+    color[3]=reader.color
+    tankV.on_for_degrees(SpeedPercent(20),SpeedPercent(20), 0.45, brake=True, block=True)
 
     for i in range(len(color)):    
         if(color[i]==1): {}
@@ -118,9 +118,10 @@ class Subtasks:
     def Subtask3(testCode):#input as binary interpretation
         MoveDistance(10)
         code=ReadBarcode()
-        Display.update()
-        if(code==testCode): Display.text_pixels("CODE MATCHES {0}".format(code), clear_screen=True, text_color='black')
-        else: Display.text_pixels("CODE DOESN'T MATCH {0}".format(code), clear_screen=True, text_color='black')
+        screen=Display.clear()
+        if(code==testCode): screen.text_pixels(text="CODE MATCHES {0}".format(code), clear_screen=True, text_color='black')
+        else: screen.text_pixels(text="CODE DOESN'T MATCH {0}".format(code), clear_screen=True, text_color='black')
+        sleep(5)
     def Subtask4():
         #does three left hand turns and sets the robot to the pickup location
         MoveDistance(6)
